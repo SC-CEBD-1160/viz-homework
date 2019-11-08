@@ -2,6 +2,7 @@ import os
 
 import matplotlib.pyplot as plt
 import pandas as pd
+import seaborn as sea
 
 
 df = pd.read_csv('data/wine.data',
@@ -61,5 +62,18 @@ plt.savefig(f'plots/phenols_flavanoids_scatter_with_size.png', dpi=300)
 #             axes.legend()
 #             plt.savefig(f'plots/exploration/wine_{column1}_{column2}_scatter.png', dpi=300)
 #             plt.close(fig)
+
+
+# seaborn
+
+os.makedirs('plots/seaborn', exist_ok=True)
+
+sea.set()
+
+fig, ax = plt.subplots(figsize=(12,12))
+sea.heatmap(df.corr(), annot=True, cmap='winter')
+ax.set_xticklabels(df.columns, rotation=45)
+ax.set_yticklabels(df.columns, rotation=45)
+plt.savefig('plots/seaborn/wine_heatmap.png')
 
 plt.close()
