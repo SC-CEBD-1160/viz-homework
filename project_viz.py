@@ -86,14 +86,14 @@ plt.savefig('plots/2_plots_same_image.png', dpi=300)
 
 # seaborn
 
-# os.makedirs('plots/seaborn', exist_ok=True)
-#
-# sea.set()
-#
-# fig, ax = plt.subplots(figsize=(12,12))
-# sea.heatmap(df.corr(), annot=True, cmap='winter')
-# ax.set_xticklabels(df.columns, rotation=45)
-# ax.set_yticklabels(df.columns, rotation=45)
-# plt.savefig('plots/seaborn/wine_heatmap.png')
+os.makedirs('plots/seaborn', exist_ok=True)
+
+sea.set()
+
+fig, ax = plt.subplots(figsize=(20,20))
+sea.heatmap(df.corr(), annot=True, cmap='winter')
+ax.set_xticklabels(df.columns)
+ax.set_yticklabels(df.columns)
+plt.savefig('plots/seaborn/wine_heatmap.png')
 
 plt.close()
