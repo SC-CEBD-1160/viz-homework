@@ -31,22 +31,35 @@ axes.set_title(f'Alcohol, Malic Acid and Color Intensity (Size)')
 axes.legend()
 plt.savefig(f'plots/multiplot_scatter_with_size.png', dpi=300)
 
+# phenols to flavanoids with size of color_intensity
 
-os.makedirs('plots/exploration/', exist_ok=True)
+fig, axes = plt.subplots(1, 1, figsize=(5, 5))
+
+axes.scatter(df['total_phenols'], df['flavanoids'], s=(df['color_intensity']) ** 2.5,
+             label=f'Phenols to Flavanoids', color='blue', marker='o', edgecolors='w', alpha=0.7)
+
+axes.set_xlabel(f'Total Phenols')
+axes.set_ylabel(f'Flavanoids')
+axes.set_title(f'Total Phenols, Flavanoids and Color Intensity')
+
+axes.legend()
+plt.savefig(f'plots/phenols_flavanoids_scatter_with_size.png', dpi=300)
+
+# os.makedirs('plots/exploration/', exist_ok=True)
 
 # Another useful dataset exploration technique involves comparing multiple columns of the dataset
 # The enumerate functions will generate pairs of indexes elements
-for col1_idx, column1 in enumerate(df.columns):
-    for col2_idx, column2 in enumerate(df.columns):
-        if col1_idx < col2_idx:
-            print(f'Generating {column1} to {column2} plot')
-            fig, axes = plt.subplots(1, 1, figsize=(5, 5))
-            axes.scatter(df[column1], df[column2], label=f'{column1} to {column2}', color='green', marker='x')
-            axes.set_title(f'{column1} to {column2}')
-            axes.set_xlabel(column1)
-            axes.set_ylabel(column2)
-            axes.legend()
-            plt.savefig(f'plots/exploration/wine_{column1}_{column2}_scatter.png', dpi=300)
-            plt.close(fig)
+# for col1_idx, column1 in enumerate(df.columns):
+#     for col2_idx, column2 in enumerate(df.columns):
+#         if col1_idx < col2_idx:
+#             print(f'Generating {column1} to {column2} plot')
+#             fig, axes = plt.subplots(1, 1, figsize=(5, 5))
+#             axes.scatter(df[column1], df[column2], label=f'{column1} to {column2}', color='green', marker='x')
+#             axes.set_title(f'{column1} to {column2}')
+#             axes.set_xlabel(column1)
+#             axes.set_ylabel(column2)
+#             axes.legend()
+#             plt.savefig(f'plots/exploration/wine_{column1}_{column2}_scatter.png', dpi=300)
+#             plt.close(fig)
 
 plt.close()
