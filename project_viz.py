@@ -46,6 +46,26 @@ axes.set_title(f'Total Phenols, Flavanoids and Color Intensity')
 axes.legend()
 plt.savefig(f'plots/phenols_flavanoids_scatter_with_size.png', dpi=300)
 
+
+# The figsize parameter allows us to configure the figure size in inches
+fig, axes = plt.subplots(2, 1, figsize=(10, 5))
+
+# Selectively plotting the axes
+axes[0].plot(df['total_phenols'])
+axes[1].plot(df['color_intensity'])
+
+axes[1].set_xlabel(f'Sample')
+axes[0].set_ylabel(f'Total Phenols')
+axes[0].set_title(f'Total Phenols')
+
+axes[1].set_xlabel(f'Sample')
+axes[1].set_ylabel(f'Color Intensity')
+axes[1].set_title(f'Color Intensity')
+
+plt.tight_layout()
+
+plt.savefig('plots/2_plots_same_image.png', dpi=300)
+
 # os.makedirs('plots/exploration/', exist_ok=True)
 
 # Another useful dataset exploration technique involves comparing multiple columns of the dataset
@@ -66,14 +86,14 @@ plt.savefig(f'plots/phenols_flavanoids_scatter_with_size.png', dpi=300)
 
 # seaborn
 
-os.makedirs('plots/seaborn', exist_ok=True)
-
-sea.set()
-
-fig, ax = plt.subplots(figsize=(12,12))
-sea.heatmap(df.corr(), annot=True, cmap='winter')
-ax.set_xticklabels(df.columns, rotation=45)
-ax.set_yticklabels(df.columns, rotation=45)
-plt.savefig('plots/seaborn/wine_heatmap.png')
+# os.makedirs('plots/seaborn', exist_ok=True)
+#
+# sea.set()
+#
+# fig, ax = plt.subplots(figsize=(12,12))
+# sea.heatmap(df.corr(), annot=True, cmap='winter')
+# ax.set_xticklabels(df.columns, rotation=45)
+# ax.set_yticklabels(df.columns, rotation=45)
+# plt.savefig('plots/seaborn/wine_heatmap.png')
 
 plt.close()
