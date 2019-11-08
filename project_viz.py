@@ -66,6 +66,23 @@ plt.tight_layout()
 
 plt.savefig('plots/2_plots_same_image.png', dpi=300)
 
+
+# 2 plots same graph
+fig, axes = plt.subplots(1, 1, figsize=(10, 5))
+
+# When creating plots there are several parameters we can use to optimize the visualization
+# https://matplotlib.org/gallery/lines_bars_and_markers/line_styles_reference.html
+# https://matplotlib.org/api/markers_api.html
+axes.plot(df['alcohol'], label='Alcohol', color='blue', linestyle='--', linewidth=2, alpha=0.6, marker='2')
+
+axes.plot(df['alcalinity_of_ash'], label='Alcalinity', color='red', linestyle='dotted', linewidth=2, alpha=0.6, marker='d')
+axes.set_title('Alcalinity and Alcohol Plot')
+axes.set_xlabel('Sample #')
+axes.set_ylabel('Index')
+axes.legend()
+
+plt.savefig('plots/alcalinity_and_Alcohol_same_plot.png', dpi=300)
+
 # os.makedirs('plots/exploration/', exist_ok=True)
 
 # Another useful dataset exploration technique involves comparing multiple columns of the dataset
