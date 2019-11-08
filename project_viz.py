@@ -54,11 +54,11 @@ fig, axes = plt.subplots(2, 1, figsize=(10, 5))
 axes[0].plot(df['total_phenols'])
 axes[1].plot(df['color_intensity'])
 
-axes[1].set_xlabel(f'Sample')
+axes[0].set_xlabel(f'Sample #')
 axes[0].set_ylabel(f'Total Phenols')
 axes[0].set_title(f'Total Phenols')
 
-axes[1].set_xlabel(f'Sample')
+axes[1].set_xlabel(f'Sample #')
 axes[1].set_ylabel(f'Color Intensity')
 axes[1].set_title(f'Color Intensity')
 
