@@ -113,4 +113,17 @@ ax.set_xticklabels(df.columns)
 ax.set_yticklabels(df.columns)
 plt.savefig('plots/seaborn/wine_heatmap.png')
 
+plt.clf()
+
+sea.set()
+
+fig, ax = plt.subplots(figsize=(10,10))
+sorted_by_alcohol_content_df = df.sort_values('alcohol')
+
+sea.lineplot('alcohol', 'color_intensity', data=sorted_by_alcohol_content_df)
+sea.lineplot('alcohol', 'alcalinity_of_ash', data=sorted_by_alcohol_content_df)
+plt.legend(['alcohol vs color_intensity', 'alcohol vs alcalinity_of_ash'])
+plt.savefig('plots/seaborn/alcohol_lineplot.png')
+plt.clf()
+
 plt.close()
