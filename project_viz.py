@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sea
 
-
 df = pd.read_csv('data/wine.data',
                  sep=',',
                  header=0)
@@ -46,6 +45,31 @@ axes.set_title(f'Total Phenols, Flavanoids and Color Intensity')
 axes.legend()
 plt.savefig(f'plots/phenols_flavanoids_scatter_with_size.png', dpi=300)
 
+# alcohol to magnesium with color intensity as size
+fig, axes = plt.subplots(1, 1, figsize=(5, 5))
+
+axes.scatter(df['alcohol'], df['magnesium'], s=(df['color_intensity']) ** 2,
+             label=f'alcohol to magnesium', color='red', marker='x', edgecolors='b', alpha=0.7)
+
+axes.set_xlabel(f'Alcohol')
+axes.set_ylabel(f'Magnesium')
+axes.set_title(f'Alcohol, Magnesium and Color Intensity')
+
+axes.legend()
+plt.savefig(f'plots/alcohol_magnesium_scatter_with_size.png', dpi=300)
+
+# multiple plots on the same axes, to get some perspective on their comparisons
+fig, axes = plt.subplots(1, 1, figsize=(5, 5))
+
+axes.scatter(df['alcohol'], df['flavanoids'], alpha=0.7, label='Flavanoids')
+axes.scatter(df['alcohol'], df['hue'], alpha=0.7, label='Hue')
+axes.scatter(df['alcohol'], df['ash'], alpha=0.7, label='Ash')
+
+axes.set_xlabel('Alcohol')
+axes.set_ylabel('Flavanoids / Hue / Ash')
+axes.set_title(f'Alcohol comparisons')
+axes.legend()
+plt.savefig(f'plots/multiplo_alcohol_flavanoids_hue_ash_scatter.png', dpi=300)
 
 # The figsize parameter allows us to configure the figure size in inches
 fig, axes = plt.subplots(2, 1, figsize=(10, 5))
