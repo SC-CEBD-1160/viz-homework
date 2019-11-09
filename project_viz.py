@@ -57,7 +57,7 @@ axes.set_title(f'Alcohol, Magnesium and Color Intensity')
 axes.legend()
 plt.savefig(f'plots/alcohol_magnesium_scatter_with_size.png', dpi=300)
 
-# alcohol to magnesium with color intensity as size
+# total_phenols to proanthocyanins with color intensity as size
 fig, axes = plt.subplots(1, 1, figsize=(5, 5))
 
 axes.scatter(df['total_phenols'], df['proanthocyanins'], s=(df['color_intensity']) ** 2,
@@ -69,6 +69,19 @@ axes.set_title(f'Total Phenols, Proanthocyanins and Color Intensity')
 
 axes.legend()
 plt.savefig(f'plots/total_phenols_proanthocyanins_scatter_with_size.png', dpi=300)
+
+# total_phenols to proanthocyanins with alcohol as size
+fig, axes = plt.subplots(1, 1, figsize=(5, 5))
+
+axes.scatter(df['total_phenols'], df['proanthocyanins'], s=(df['alcohol']) ** 1.5,
+             label=f'total phenols to proanthocyanins', color='grey', marker='o', edgecolors='b', alpha=0.7)
+
+axes.set_xlabel(f'Total Phenols')
+axes.set_ylabel(f'Proanthocyanins')
+axes.set_title(f'Total Phenols, Proanthocyanins and Alcohol')
+
+axes.legend()
+plt.savefig(f'plots/total_phenols_proanthocyanins_scatter_with_alcohol.png', dpi=300)
 
 # multiple plots on the same axes, to get some perspective on their comparisons
 fig, axes = plt.subplots(1, 1, figsize=(5, 5))
@@ -168,4 +181,8 @@ for jointplot_kind in ['reg', 'hex', 'kde', 'scatter']:
     plt.savefig(f'plots/seaborn/flavanoids_to_proanthocyanins_jointplot_{jointplot_kind}.png')
     plt.clf()
 
+# Pairplot
+
+sea.pairplot(df, hue='class', diag_kind='hist')
+plt.savefig('plots/seaborn/wine_pairplot.png')
 plt.close()
