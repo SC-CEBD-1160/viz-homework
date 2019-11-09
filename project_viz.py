@@ -32,7 +32,6 @@ axes.legend()
 plt.savefig(f'plots/multiplot_scatter_with_size.png', dpi=300)
 
 # phenols to flavanoids with size of color_intensity
-
 fig, axes = plt.subplots(1, 1, figsize=(5, 5))
 
 axes.scatter(df['total_phenols'], df['flavanoids'], s=(df['color_intensity']) ** 2.5,
@@ -49,7 +48,7 @@ plt.savefig(f'plots/phenols_flavanoids_scatter_with_size.png', dpi=300)
 fig, axes = plt.subplots(1, 1, figsize=(5, 5))
 
 axes.scatter(df['alcohol'], df['magnesium'], s=(df['color_intensity']) ** 2,
-             label=f'alcohol to magnesium', color='red', marker='x', edgecolors='b', alpha=0.7)
+             label=f'alcohol to magnesium', color='red', marker='x', edgecolors='w', alpha=0.7)
 
 axes.set_xlabel(f'Alcohol')
 axes.set_ylabel(f'Magnesium')
@@ -57,6 +56,19 @@ axes.set_title(f'Alcohol, Magnesium and Color Intensity')
 
 axes.legend()
 plt.savefig(f'plots/alcohol_magnesium_scatter_with_size.png', dpi=300)
+
+# alcohol to magnesium with color intensity as size
+fig, axes = plt.subplots(1, 1, figsize=(5, 5))
+
+axes.scatter(df['total_phenols'], df['proanthocyanins'], s=(df['color_intensity']) ** 2,
+             label=f'total phenols to proanthocyanins', color='blue', marker='X', edgecolors='b', alpha=0.7)
+
+axes.set_xlabel(f'Total Phenols')
+axes.set_ylabel(f'Proanthocyanins')
+axes.set_title(f'Total Phenols, Proanthocyanins and Color Intensity')
+
+axes.legend()
+plt.savefig(f'plots/total_phenols_proanthocyanins_scatter_with_size.png', dpi=300)
 
 # multiple plots on the same axes, to get some perspective on their comparisons
 fig, axes = plt.subplots(1, 1, figsize=(5, 5))
@@ -69,7 +81,7 @@ axes.set_xlabel('Alcohol')
 axes.set_ylabel('Flavanoids / Hue / Ash')
 axes.set_title(f'Alcohol comparisons')
 axes.legend()
-plt.savefig(f'plots/multiplo_alcohol_flavanoids_hue_ash_scatter.png', dpi=300)
+plt.savefig(f'plots/multiplot_alcohol_flavanoids_hue_ash_scatter.png', dpi=300)
 
 # The figsize parameter allows us to configure the figure size in inches
 fig, axes = plt.subplots(2, 1, figsize=(10, 5))
@@ -149,5 +161,11 @@ sea.lineplot('alcohol', 'alcalinity_of_ash', data=sorted_by_alcohol_content_df)
 plt.legend(['alcohol vs color_intensity', 'alcohol vs alcalinity_of_ash'])
 plt.savefig('plots/seaborn/alcohol_lineplot.png')
 plt.clf()
+
+#joint plot
+for jointplot_kind in ['reg', 'hex', 'kde', 'scatter']:
+    sea.jointplot('flavanoids', 'proanthocyanins', data=df, kind=jointplot_kind)
+    plt.savefig(f'plots/seaborn/flavanoids_to_proanthocyanins_jointplot_{jointplot_kind}.png')
+    plt.clf()
 
 plt.close()
