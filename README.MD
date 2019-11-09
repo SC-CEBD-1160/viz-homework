@@ -1,6 +1,6 @@
 # Greatest plot
 
-The best plot that I could find would be **phenols_flvanoids_scatter_with_size.png**
+The best plot that I could find would be **phenols_flavanoids_scatter_with_size.png**
 
 It has an interesting characteristic that looks like there are two lines going trough the data
 
